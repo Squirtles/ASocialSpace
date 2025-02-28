@@ -4,13 +4,20 @@ let posts = [];
 const curseWords = ['damn', 'hell', 'fuck', 'shit']; // Add more as needed
 const logs = [];
 
-function saveToLogs(action, data) {
-    logs.push({
-        timestamp: new Date().toISOString(),
-        action,
-        data
-    });
-    localStorage.setItem('logs', JSON.stringify(logs));
+async function saveToLogs(action, data) {
+  const log = {
+    timestamp: new Date().toISOString(),
+    action,
+    data
+  };
+  let logs = JSON.parse(localStorage.getItem('logs') || '[]');
+  logs.push(log);
+  localStorage.setItem('logs', JSON.stringify(logs));
+  
+  await fetch('/.netlify/functions/log', {
+    method: 'POST',
+    body: JSON.stringify({ action, data })
+  });
 }
 
 function login() {
