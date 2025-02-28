@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Social Media</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simple Social</h1>
+            <div class="user-controls">
+                <input type="text" id="username" placeholder="Username">
+                <button onclick="login()">Login</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="post-form">
+                <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+                <button onclick="createPost()">Post</button>
+            </div>
+            
+            <div class="feed" id="feed">
+                <div class="tabs">
+                    <button class="tab active" onclick="showTab('live')">Live</button>
+                    <button class="tab" onclick="showTab('all')">All</button>
+                </div>
+                <div id="live-feed" class="feed-content active"></div>
+                <div id="all-feed" class="feed-content"></div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
